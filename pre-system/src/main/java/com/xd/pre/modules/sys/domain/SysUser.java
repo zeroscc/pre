@@ -39,7 +39,7 @@ public class SysUser extends Model<SysUser> {
     /**
      * 用户名
      */
-    @SensitiveInfo(SensitiveType.CHINESE_NAME)
+//    @SensitiveInfo(SensitiveType.CHINESE_NAME)
     private String username;
 
     /**
@@ -60,13 +60,13 @@ public class SysUser extends Model<SysUser> {
     /**
      * 邮箱
      */
-    @SensitiveInfo(SensitiveType.EMAIL)
+//    @SensitiveInfo(SensitiveType.EMAIL)
     private String email;
 
     /**
      * 手机号
      */
-    @SensitiveInfo(SensitiveType.MOBILE_PHONE)
+//    @SensitiveInfo(SensitiveType.MOBILE_PHONE)
     private String phone;
 
     /**

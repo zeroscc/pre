@@ -7,6 +7,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -23,6 +24,7 @@ public class EmailUtil {
      * 获取JavaMailSender bean
      */
     @Autowired
+    @Resource
     private JavaMailSender javaMailSender;
 
     /**

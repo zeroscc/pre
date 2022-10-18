@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xd.pre.modules.sys.mapper.SysAppMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.xd.pre.modules.sys.domain.SysApp">
+        <id column="app_id" property="appId" jdbcType="INTEGER" />
+        <result column="app_name" property="appName" jdbcType="VARCHAR" />
+        <result column="app_code" property="appCode" jdbcType="VARCHAR" />
+        <result column="app_desc" property="appDesc" jdbcType="VARCHAR" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+        <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+        <result column="tenant_id" property="tenantId" jdbcType="INTEGER" />
+    </resultMap>
+
+
+    <select id="selectAppListPage" resultMap="BaseResultMap">
+        SELECT
+        `app`.app_id,
+        `app`.app_name,
+        `app`.app_code,
+        `app`.app_desc,
+        `app`.create_time,
+        `app`.update_time,
+        `app`.del_flag,
+        `app`.tenant_id
+
+        FROM
+        sys_app AS `app`
+        <where>
+            <if test="appName != null and appName != ''">
+                and `app`.app_name LIKE CONCAT('%',#{appName},'%')
+            </if>
+            <if test="startTime != null">
+                and `app`.create_time &gt;= #{startTime}
+                and `app`.create_time &lt;= #{endTime}
+            </if>
+        and `app`.del_flag = '0'
+        </where>
+        ORDER BY `app`.create_time DESC
+    </select>
+
+    <select id="selectByCode" resultMap="BaseResultMap">
+        SELECT
+        `app`.app_id,
+        `app`.app_name,
+        `app`.app_code,
+        `app`.app_desc,
+        `app`.create_time,
+        `app`.update_time,
+        `app`.del_flag,
+        `app`.tenant_id
+
+        FROM
+        sys_app AS `app`
+        WHERE
+        `app`.app_code = #{appCode}
+        and `app`.del_flag = '0'
+    </select>
+
+</mapper>

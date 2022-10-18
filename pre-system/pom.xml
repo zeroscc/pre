@@ -6,7 +6,7 @@
         <groupId>com.xd</groupId>
         <artifactId>pre</artifactId>
         <version>1.4</version>
-        <relativePath>../</relativePath>
+        <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>pre-system</artifactId>
     <name>pre-system</name>

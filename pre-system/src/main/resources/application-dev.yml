@@ -92,4 +92,4 @@ spring:
     port: 6379
     timeout: 6000ms
 
-uploadFileServerPathPrefix: /Users/lihaodong/Desktop/files
+uploadFileServerPathPrefix: /Users/zeroscc/Desktop/files
