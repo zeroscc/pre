@@ -15,6 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
 /**
  * <p>
@@ -41,8 +42,8 @@ public class SysAppController {
     public R getappList(Page page, @RequestParam String appName, @RequestParam String time) {
         String startTime=null;
         String endTime=null;
-
-        if (time != null && !"".equals(time)) {
+        if (!"null".equals(time) && null != time && !"".equals(time)) {
+            System.out.println("进入");
             String[] times = time.split(",");
             Date dateStartTime = new Date(times[0]);
             Date dateEndTime = new Date(times[1]);
@@ -84,7 +85,7 @@ public class SysAppController {
      * @param appId
      * @return
      */
-    @SysOperaLog(descrption = "删除应用以及权限")
+    @SysOperaLog(descrption = "删除应用")
     @DeleteMapping("/{appId}")
 //    @PreAuthorize("hasAuthority('sys:app:delete')")
     public R delete(@PathVariable("appId") Integer appId) {
@@ -92,16 +93,10 @@ public class SysAppController {
     }
 
     @SysOperaLog(descrption = "批量删除应用")
-    @DeleteMapping("/batch")
+    @DeleteMapping("/batch/{appIds}")
 //    @PreAuthorize("hasAuthority('sys:app:delete')")
-    public R deleteBatch( String ids) {
-        System.out.println("访问");
-        System.out.println(ids);
-        String[] split = ids.split(",");
-        int[] idsa = Arrays.asList(split).stream().mapToInt(Integer::parseInt).toArray();
-        System.out.println("ids[1] = " + idsa[1]);
-        System.out.println(Collections.singleton(idsa));
-        return R.ok(appService.removeByIds(Collections.singleton(idsa)));
+    public R deleteBatch(@PathVariable("appIds") List<Integer> appIds) {
+        return R.ok(appService.removeByIds(appIds));
     }
 
 }
